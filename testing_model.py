@@ -1,3 +1,7 @@
+"""
+Тестирование сети
+"""
+
 import numpy as np
 import keras as k
 from sklearn.metrics import LabelBinarizer

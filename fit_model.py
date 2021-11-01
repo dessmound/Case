@@ -1,59 +1,17 @@
-from keras.backend import flatten
-import numpy as np
-import os
 
+"""
+Обучение сети
+
+"""
+import numpy as np
 import keras as k
-import cv2
 import matplotlib.pyplot as plt
-from sklearn import preprocessing
 from sklearn.preprocessing import LabelBinarizer
-from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
+
 data = []
 labels = []
 
-
-
-
-
-
-# def viewImage(image, name_of_window):
-#     cv2.namedWindow(name_of_window, cv2.WINDOW_NORMAL)
-#     cv2.imshow(name_of_window, image)
-#     cv2.waitKey(0)
-#     cv2.destroyAllWindows()
-
-
-# img = cv2.imread('./img/1_0.jpg')
-# img = cv2.resize(img, (256, 256))
-# grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-# ret, grayImg = cv2.threshold(grayImg,210,255,cv2.ADAPTIVE_THRESH_MEAN_C)
-
-#Обработка изображений
-# path = os.listdir(str(os.getcwd())+'\img')
-# print(path)
-
-# for el in path:
-#     img = cv2.imread('./img/'+el)
-#     img = cv2.resize(img, (256, 256))
-#     grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-#     ret, grayImg = cv2.threshold(grayImg,210,255,cv2.ADAPTIVE_THRESH_MEAN_C)
-#     labels.append(el.split('.')[-2].split('_')[-1]) 
-#     data.append(grayImg)
-# print(labels)
-
-
-# data = np.array(data, dtype="float") / 255.0
-# labels = np.array(labels)
-
-# x = np.array([0.3, 0.7, 0.9])
-# y = np.array([0.5, 0.9, 1.0])
-
-
-#Сохранение массива
-# np.save('dataset', data)
-# np.save('labels', labels)
-# print("Массивы сохранены")
 
 #Загрузка массивов
 
@@ -85,8 +43,8 @@ model.add(k.layers.Dense(256, activation='relu'))
 model.add(k.layers.Dense(64, activation='relu'))
 model.add(k.layers.Dense(lb.classes_.size, activation='softmax'))
 model.summary() #Отображение структуры сети
-model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
-fit_result = model.fit(trainX, trainY, validation_data=(testX, testY), epochs=EPOCH, batch_size=20) #EarlyStopping(monitor='val_acc', patience=3)
+model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"]) #Оптимизатор Adam; Функция потери категориальная кроссэнтропия
+fit_result = model.fit(trainX, trainY, validation_data=(testX, testY), epochs=EPOCH, batch_size=20) #Для остановки обучения при возрастании ошибки: EarlyStopping(monitor='val_acc', patience=3)
 
 # testdata = []
 # test_img = cv2.imread('./img/5_30.jpg')
