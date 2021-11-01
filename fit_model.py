@@ -46,38 +46,9 @@ model.summary() #Отображение структуры сети
 model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"]) #Оптимизатор Adam; Функция потери категориальная кроссэнтропия
 fit_result = model.fit(trainX, trainY, validation_data=(testX, testY), epochs=EPOCH, batch_size=20) #Для остановки обучения при возрастании ошибки: EarlyStopping(monitor='val_acc', patience=3)
 
-# testdata = []
-# test_img = cv2.imread('./img/5_30.jpg')
-# test_img = cv2.resize(test_img, (256, 256))
-# test_img = cv2.cvtColor(test_img, cv2.COLOR_BGR2GRAY)
-# ret, test_img = cv2.threshold(test_img,210,255,cv2.ADAPTIVE_THRESH_MEAN_C)
-# testdata.append(test_img)
-# testdata = np.array(testdata, dtype='float') / 255.0
-# predictions = model.predict(testdata)
-# i = predictions.argmax(axis=1)[0]
-# out = lb.classes_[i]
-# print(out)
-# predictions = model.predict(testX, batch_size=2)
-# # print(classification_report(testY.argmax(axis=1),predictions.argmax(axis=1), target_names=lb.classes_))
 
 
-# j = 0
-# for el in predictions:
-#     i = el.argmax()
-#     out = lb.classes_[i]
-#     print('Истинное значение: ', lb.classes_[testY.argmax(axis=1)[j]] ,' Предсказанное: ', out)
-#     j+=1
-
-
-
-
-# i = predictions.argmax(axis=1)[0]
-# out = lb.classes_[i]
-# print(out)
-# print(predictions, testY[0])
-
-
-
+#Построение графика
 N = np.arange(0, EPOCH)#эпохи
 plt.style.use("ggplot")
 plt.figure()
