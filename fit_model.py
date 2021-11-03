@@ -17,6 +17,7 @@ labels = []
 
 data = np.load('dataset.npy') 
 labels = np.load('labels.npy')
+print(data[0])
 
 (trainX, testX, trainY, testY) = train_test_split(data, labels, test_size = 0.1, random_state=42) #Разбиение набора на тренировочный и проверочный
 

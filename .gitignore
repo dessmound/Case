@@ -2,6 +2,11 @@
 /img
 /firstmodel
 /prepare
+/allimg
+/results
 rename.py
 dataset.npy
 labels.npy
+imgdata.npy
+videoimg.npy
+videodata.npy
